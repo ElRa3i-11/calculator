@@ -17,63 +17,95 @@ calwin=Tk()
 #twoButton=Button(calwin,text="2",
 #                font=("Arial",60,"bold"),
 #                command=Buttonpr(2),
-#               )
+#             )
+def leb() :
+    inLabel.config(state='normal')
+    inLabel.delete(0, END)
+    inLabel.insert(0, equation)
+    inLabel.xview_moveto(1)
+    inLabel.config(state='disabled')
+result=0
 def Button0() :
     global equation
     n = 0
     equation = equation + str(n)
-    inLabel.config(text=equation)
+    leb()
 
 def Button1() :
     global equation
     n = 1
     equation = equation + str(n)
-    inLabel.config(text=equation)
+    leb()
 def Button2() :
     global equation
     n = 2
     equation=equation+str(n)
-    inLabel.config(text=equation)
+    leb()
 def Button2() :
     global equation
     n = 2
     equation=equation+str(n)
-    inLabel.config(text=equation)
+    leb()
 def Button3() :
     global equation
     n = 3
     equation=equation+str(n)
-    inLabel.config(text=equation)
+    leb()
 def Button4() :
     global equation
     n = 4
     equation=equation+str(n)
-    inLabel.config(text=equation)
+    leb()
 def Button5() :
     global equation
     n = 5
     equation=equation+str(n)
-    inLabel.config(text=equation)
+    leb()
 def Button6() :
     global equation
     n = 6
     equation=equation+str(n)
-    inLabel.config(text=equation)
+    leb()
 def Button7() :
     global equation
     n = 7
     equation=equation+str(n)
-    inLabel.config(text=equation)
+    leb()
 def Button8() :
     global equation
     n = 8
     equation=equation+str(n)
-    inLabel.config(text=equation)
+    leb()
 def Button9() :
     global equation
     n = 9
     equation=equation+str(n)
-    inLabel.config(text=equation)
+    leb()
+######
+def Plus() :
+    global equation
+    n = "+"
+    equation=equation+n
+    leb()
+def minus() :
+    global equation
+    n = "-"
+    equation=equation+n
+    leb()
+def Multiplicaiton() :
+    global equation
+    n = "*"
+    equation=equation+n
+    leb()
+def point() :
+    global equation
+    n = "."
+    equation=equation+n
+    leb()
+def equal() :
+    global equation
+    print(result)
+
 
 #Button from zero to nine
 zeroButton=Button(calwin,text="0",
@@ -117,24 +149,29 @@ nineButton=Button(calwin,text="9",
                 command=Button9 ,
                 )
 #lablels
-inLabel= Label(calwin,font=("Arial",50,"bold"),bd=10,relief="sunken")
+inLabel= Entry(calwin,font=("Arial",50,"bold"),bd=10,relief="sunken",justify='right', state='disabled', disabledforeground='black')
 ResultLabel=Label(calwin,font=("Arial",50,"bold"),bd=10,relief="sunken")
 
 #other Button
 pointButton=Button(calwin,text=".",
                 font=("Arial",60,"bold"),
+                command=point,
                 )
 equalsButton=Button(calwin,text="=",
                 font=("Arial",60,"bold"),
+                command=equal,
                 )
 plusButton=Button(calwin,text="+",
                 font=("Arial",60,"bold"),
+                command=Plus,
                 )
-minesButton=Button(calwin,text="-",
+minusButton=Button(calwin,text="-",
                 font=("Arial",60,"bold"),
+                command=minus
                 )
 multiplieButton=Button(calwin,text="x",
                 font=("Arial",60,"bold"),
+                command=Multiplicaiton,
                 )
 # SE = SHIVA + ElRa3i
 calwin.title(" SE Calculator")
@@ -142,26 +179,28 @@ calwin.title(" SE Calculator")
 #calwin.iconphoto(True,icon)
 calwin.geometry("380x640")
 calwin.config(background="#4b4c4f")
+for i in range(5):
+    calwin.columnconfigure(i, weight=1)
 
 zeroButton.grid(row=5,column=0,columnspan=2,pady=(0, 0),sticky=EW)
 pointButton.grid(row=5,column=2,pady=(0, 0),sticky=EW)
-oneButton.grid(row=4,column=0,pady=(0, 0))
-twoButton.grid(row=4,column=1,pady=(0, 0))
-threeButton.grid(row=4,column=2,pady=(0, 0))
-fourButton.grid(row=3,column=0,pady=(0, 0))
-fiveButton.grid(row=3,column=1,pady=(0, 0))
-sixButton.grid(row=3,column=2,pady=(0, 0))
-sevenButton.grid(row=2,column=0,pady=(0, 0))
-eightButton.grid(row=2,column=1,pady=(0, 0))
-nineButton.grid(row=2,column=2,pady=(0, 0))
+oneButton.grid(row=4,column=0,pady=(0, 0),sticky=EW)
+twoButton.grid(row=4,column=1,pady=(0, 0),sticky=EW)
+threeButton.grid(row=4,column=2,pady=(0, 0),sticky=EW)
+fourButton.grid(row=3,column=0,pady=(0, 0),sticky=EW)
+fiveButton.grid(row=3,column=1,pady=(0, 0),sticky=EW)
+sixButton.grid(row=3,column=2,pady=(0, 0),sticky=EW)
+sevenButton.grid(row=2,column=0,pady=(0, 0),sticky=EW)
+eightButton.grid(row=2,column=1,pady=(0, 0),sticky=EW)
+nineButton.grid(row=2,column=2,pady=(0, 0),sticky=EW)
 
-inLabel.grid(row=0,column=0,columnspan=6,pady=(50,0),sticky=EW)
+inLabel.grid(row=0,column=0,columnspan=4,pady=(50,0),sticky=EW)
 ResultLabel.grid(row=1,column=0,columnspan=6,pady=(0,0),sticky=EW)
 
-equalsButton.grid(row=4,column=3,pady=(0, 0))
+equalsButton.grid(row=4,column=3,pady=(0, 0),sticky=EW)
 equalsButton.config(bg="#62d3f5")
-plusButton.grid(row=3,column=3,pady=(0, 0))
-minesButton.grid(row=2,column=3,pady=(0, 0) , sticky=EW)
+plusButton.grid(row=3,column=3,pady=(0, 0),sticky=EW)
+minusButton.grid(row=2,column=3,pady=(0, 0) , sticky=EW)
 multiplieButton.grid(row=3,column=4,pady=(0, 0) , sticky=EW)
 calwin.mainloop()
 
