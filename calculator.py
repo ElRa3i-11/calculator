@@ -1,30 +1,14 @@
 from tkinter import *
 equation=""
 calwin=Tk()
-#f
-#button fonction
-            #####Important#####
-#######Lezem nl9wa methode n5tsro biha he4a el kol########
-##jrbt n3ml haka ama m5dmtch
-#def Buttonpr(n) :
-#    global equation
-#    equation=equation+str(n)
-#    inLabel.config(text=equation)
-#oneButton=Button(calwin,text="1",
-#                font=("Arial",60,"bold"),
-#                command=Buttonpr(1),
-#               )
-#twoButton=Button(calwin,text="2",
-#                font=("Arial",60,"bold"),
-#                command=Buttonpr(2),
-#             )
 def leb() :
     inLabel.config(state='normal')
     inLabel.delete(0, END)
     inLabel.insert(0, equation)
     inLabel.xview_moveto(1)
     inLabel.config(state='disabled')
-result=0
+
+        
 def Button0() :
     global equation
     n = 0
@@ -102,11 +86,55 @@ def point() :
     n = "."
     equation=equation+n
     leb()
-def equal() :
-    global equation
-    print(result)
-
-
+def calculator() :
+    result=0.0
+    num=""
+    num2=""
+    i=0
+    while i<len(equation) :
+        if equation[i].isdecimal() == True :
+                num=num+equation[i]
+                print(num,"ff")
+                if i == len(equation) - 1 :
+                    print(equation[i-1])
+                    if equation[i-1] == "+" :
+                        result=result+float(num)
+                    elif equation[i-1] == "-" :
+                        result=result-float(num)
+                    else :
+                        result=result*float(num)
+        else :
+            sign=equation[i]
+            c=i+1
+            while c<len(equation) and equation[c].isdecimal() == True :
+                num2=num2+equation[c]
+                c=c+1
+            if sign == "+" :
+                print(num,"ss")
+                print(num2)
+                result=result+float(num) + float(num2)
+            if sign == "-" :
+                print(num,"ss")
+                print(num2)
+                result=result+(float(num) - float(num2))
+            if sign == "*" :
+                print(num,"ss")
+                print(num2)
+                result=result+(float(num) * float(num2))  
+            num=""
+            num2=""
+            i=c
+        
+        i=i+1 
+    ResultLabel.config(text=result) 
+def vanish():
+    global equation,result 
+    equation = ''
+    result = 0.0
+    inLabel.config(state='normal')
+    inLabel.delete(0, END)
+    inLabel.config(state='disabled')
+    ResultLabel.config(text="")
 #Button from zero to nine
 zeroButton=Button(calwin,text="0",
                 font=("Arial",60,"bold"),
@@ -149,8 +177,8 @@ nineButton=Button(calwin,text="9",
                 command=Button9 ,
                 )
 #lablels
-inLabel= Entry(calwin,font=("Arial",50,"bold"),bd=10,relief="sunken",justify='right', state='disabled', disabledforeground='black')
-ResultLabel=Label(calwin,font=("Arial",50,"bold"),bd=10,relief="sunken")
+inLabel= Entry(calwin,font=("Arial",40,"bold"),bd=10,relief="sunken",justify='right', state='disabled', disabledforeground='black')
+ResultLabel=Label(calwin,font=("Arial",40,"bold"),bd=10,relief="sunken")
 
 #other Button
 pointButton=Button(calwin,text=".",
@@ -159,7 +187,7 @@ pointButton=Button(calwin,text=".",
                 )
 equalsButton=Button(calwin,text="=",
                 font=("Arial",60,"bold"),
-                command=equal,
+                command=calculator
                 )
 plusButton=Button(calwin,text="+",
                 font=("Arial",60,"bold"),
@@ -173,17 +201,21 @@ multiplieButton=Button(calwin,text="x",
                 font=("Arial",60,"bold"),
                 command=Multiplicaiton,
                 )
+CButton=Button(calwin,text="C",
+                font=("Arial",60,"bold"),
+                command=vanish,
+                )
 # SE = SHIVA + ElRa3i
 calwin.title(" SE Calculator")
 #icon = PhotoImage(file='logo.png')
 #calwin.iconphoto(True,icon)
-calwin.geometry("380x640")
+calwin.geometry("600x640")
 calwin.config(background="#4b4c4f")
+calwin.minsize(600, 640)
 for i in range(5):
     calwin.columnconfigure(i, weight=1)
 
 zeroButton.grid(row=5,column=0,columnspan=2,pady=(0, 0),sticky=EW)
-pointButton.grid(row=5,column=2,pady=(0, 0),sticky=EW)
 oneButton.grid(row=4,column=0,pady=(0, 0),sticky=EW)
 twoButton.grid(row=4,column=1,pady=(0, 0),sticky=EW)
 threeButton.grid(row=4,column=2,pady=(0, 0),sticky=EW)
@@ -195,12 +227,14 @@ eightButton.grid(row=2,column=1,pady=(0, 0),sticky=EW)
 nineButton.grid(row=2,column=2,pady=(0, 0),sticky=EW)
 
 inLabel.grid(row=0,column=0,columnspan=4,pady=(50,0),sticky=EW)
-ResultLabel.grid(row=1,column=0,columnspan=6,pady=(0,0),sticky=EW)
+ResultLabel.grid(row=1,column=0,columnspan=4,pady=(0,0),sticky=EW)
 
-equalsButton.grid(row=4,column=3,pady=(0, 0),sticky=EW)
+pointButton.grid(row=5,column=2,pady=(0, 0),sticky=EW)
+equalsButton.grid(row=4,column=3,rowspan=2,pady=(0, 0),sticky=NSEW)
 equalsButton.config(bg="#62d3f5")
 plusButton.grid(row=3,column=3,pady=(0, 0),sticky=EW)
 minusButton.grid(row=2,column=3,pady=(0, 0) , sticky=EW)
+CButton.grid(row=2,column=4,pady=(0, 0) , sticky=EW)
 multiplieButton.grid(row=3,column=4,pady=(0, 0) , sticky=EW)
 calwin.mainloop()
 
