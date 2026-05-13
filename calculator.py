@@ -81,6 +81,11 @@ def Multiplicaiton() :
     n = "*"
     equation=equation+n
     leb()
+def Multiplicaiton() :
+    global equation
+    n = "/"
+    equation=equation+n
+    leb()
 def point() :
     global equation
     n = "."
@@ -94,13 +99,14 @@ def calculator() :
     while i<len(equation) :
         if equation[i].isdecimal() == True :
                 num=num+equation[i]
-                print(num,"ff")
                 if i == len(equation) - 1 :
                     print(equation[i-1])
                     if equation[i-1] == "+" :
                         result=result+float(num)
                     elif equation[i-1] == "-" :
                         result=result-float(num)
+                    elif equation[i-1]=="/":
+                        result=result/float(num)
                     else :
                         result=result*float(num)
         else :
@@ -110,17 +116,13 @@ def calculator() :
                 num2=num2+equation[c]
                 c=c+1
             if sign == "+" :
-                print(num,"ss")
-                print(num2)
                 result=result+float(num) + float(num2)
-            if sign == "-" :
-                print(num,"ss")
-                print(num2)
+            elif sign == "-" :
                 result=result+(float(num) - float(num2))
-            if sign == "*" :
-                print(num,"ss")
-                print(num2)
-                result=result+(float(num) * float(num2))  
+            elif sign == "*" :
+                result=result+(float(num) * float(num2))
+            elif sign == "/" :
+                result=result+(float(num) / float(num2))
             num=""
             num2=""
             i=c
@@ -201,6 +203,10 @@ multiplieButton=Button(calwin,text="x",
                 font=("Arial",60,"bold"),
                 command=Multiplicaiton,
                 )
+DivsionButton=Button(calwin,text="/",
+                font=("Arial",60,"bold"),
+                command=Multiplicaiton,
+                )
 CButton=Button(calwin,text="C",
                 font=("Arial",60,"bold"),
                 command=vanish,
@@ -236,5 +242,6 @@ plusButton.grid(row=3,column=3,pady=(0, 0),sticky=EW)
 minusButton.grid(row=2,column=3,pady=(0, 0) , sticky=EW)
 CButton.grid(row=2,column=4,pady=(0, 0) , sticky=EW)
 multiplieButton.grid(row=3,column=4,pady=(0, 0) , sticky=EW)
+DivsionButton.grid(row=4,column=4,pady=(0, 0) , sticky=EW)
 calwin.mainloop()
 
