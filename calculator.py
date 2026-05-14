@@ -98,17 +98,19 @@ def calculator() :
     i=0
     while i<len(equation) :
         if equation[i].isdecimal() == True :
-                num=num+equation[i]
-                if i == len(equation) - 1 :
-                    print(equation[i-1])
-                    if equation[i-1] == "+" :
-                        result=result+float(num)
-                    elif equation[i-1] == "-" :
-                        result=result-float(num)
-                    elif equation[i-1]=="/":
-                        result=result/float(num)
-                    else :
-                        result=result*float(num)
+            num=num+equation[i]
+            if i == len(equation) - 1 :
+                print(equation[i-1])
+                if equation[i-1] == "+" :
+                    result=result+float(num)
+                elif equation[i-1] == "-" :
+                    result=result-float(num)
+                elif equation[i-1]=="/":
+                    result=result/float(num)
+                else :
+                    result=result*float(num)
+        elif equation[i] == "." :
+            num=num
         else :
             sign=equation[i]
             c=i+1
