@@ -81,7 +81,7 @@ def Multiplicaiton() :
     n = "*"
     equation=equation+n
     leb()
-def Multiplicaiton() :
+def Division() :
     global equation
     n = "/"
     equation=equation+n
@@ -109,10 +109,9 @@ def calculator() :
                     result=result/float(num)
                 else :
                     result=result*float(num)
-        elif equation[i] == "." :
-            num=num
         else :
             sign=equation[i]
+            print(sign)
             c=i+1
             while c<len(equation) and equation[c].isdecimal() == True :
                 num2=num2+equation[c]
@@ -124,7 +123,12 @@ def calculator() :
             elif sign == "*" :
                 result=result+(float(num) * float(num2))
             elif sign == "/" :
-                result=result+(float(num) / float(num2))
+                result=result+(float(num)/float(num2))
+            elif sign =="." :
+                k=len(str(num2))
+                pu=10**k
+                print(k)
+                result=result+((float(num)) + (float(num2)/pu))
             num=""
             num2=""
             i=c
@@ -207,7 +211,7 @@ multiplieButton=Button(calwin,text="x",
                 )
 DivsionButton=Button(calwin,text="/",
                 font=("Arial",60,"bold"),
-                command=Multiplicaiton,
+                command=Division,
                 )
 CButton=Button(calwin,text="C",
                 font=("Arial",60,"bold"),
