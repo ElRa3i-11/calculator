@@ -97,6 +97,8 @@ def calculator() :
     num2=""
     i=0
     while i<len(equation) :
+        if str(equation[len(equation)-1]) in {"+","-","*","/","."} :
+            ResultLabel.config(text="Error") 
         if equation[i].isdecimal() == True :
             num=num+equation[i]
             if i == len(equation) - 1 :
@@ -113,6 +115,7 @@ def calculator() :
             sign=equation[i]
             print(sign)
             c=i+1
+                
             while c<len(equation) and equation[c].isdecimal() == True :
                 num2=num2+equation[c]
                 c=c+1
@@ -217,13 +220,16 @@ CButton=Button(calwin,text="C",
                 font=("Arial",60,"bold"),
                 command=vanish,
                 )
+test=Button(calwin,text="t",
+                font=("Arial",60,"bold"),
+                )
 # SE = SHIVA + ElRa3i
 calwin.title(" SE Calculator")
 #icon = PhotoImage(file='logo.png')
 #calwin.iconphoto(True,icon)
-calwin.geometry("600x640")
+calwin.geometry("460x640")
 calwin.config(background="#4b4c4f")
-calwin.minsize(600, 640)
+calwin.minsize(460, 640)
 for i in range(5):
     calwin.columnconfigure(i, weight=1)
 
@@ -238,8 +244,8 @@ sevenButton.grid(row=2,column=0,pady=(0, 0),sticky=EW)
 eightButton.grid(row=2,column=1,pady=(0, 0),sticky=EW)
 nineButton.grid(row=2,column=2,pady=(0, 0),sticky=EW)
 
-inLabel.grid(row=0,column=0,columnspan=4,pady=(50,0),sticky=EW)
-ResultLabel.grid(row=1,column=0,columnspan=4,pady=(0,0),sticky=EW)
+inLabel.grid(row=0,column=0,columnspan=6,pady=(50,0),sticky=EW)
+ResultLabel.grid(row=1,column=0,columnspan=6,pady=(0,0),sticky=EW)
 
 pointButton.grid(row=5,column=2,pady=(0, 0),sticky=EW)
 equalsButton.grid(row=4,column=3,rowspan=2,pady=(0, 0),sticky=NSEW)
@@ -247,6 +253,7 @@ equalsButton.config(bg="#62d3f5")
 plusButton.grid(row=3,column=3,pady=(0, 0),sticky=EW)
 minusButton.grid(row=2,column=3,pady=(0, 0) , sticky=EW)
 CButton.grid(row=2,column=4,pady=(0, 0) , sticky=EW)
+test.grid(row=2,column=5,pady=(0, 0) , sticky=EW)
 multiplieButton.grid(row=3,column=4,pady=(0, 0) , sticky=EW)
 DivsionButton.grid(row=4,column=4,pady=(0, 0) , sticky=EW)
 calwin.mainloop()
